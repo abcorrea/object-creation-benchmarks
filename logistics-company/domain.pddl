@@ -7,10 +7,10 @@
 ;; new trucks. This action is more expensive than all others, so there
 ;; is a tradeoff between buying more trucks and reusing the ones that
 ;; are already there.
-;; Purchases trucks start at the headquarters of the company.
+;; Purchased trucks start at the headquarters of the company.
 
 (define (domain logistics-company)
-  (:requirements :strips :typing :negative-preconditions)
+  (:requirements :strips :typing)
   (:types
     entity
     location - object
@@ -24,8 +24,6 @@
     (in ?p - package ?t - truck)
     ;; Truck has space to carry a package
     (has-space ?t - truck)
-    ;; Package has been delivered
-    (delivered ?p - package)
     ;; Two cities are connected (static)
     (connected ?l1 - location ?l2 - location)
     ;; Location is a headquarter
@@ -36,7 +34,7 @@
     (total-cost)
   )
 
-  (:action hire-truck
+  (:action buy-truck
     :parameters (?l - location)
     :precondition (and
       (headquarters ?l)
@@ -80,7 +78,7 @@
     )
   )
 
-  (:action deliver
+  (:action drop
     :parameters (?t - truck ?p - package ?l - location)
     :precondition (and
       (at ?t ?l)
@@ -90,7 +88,6 @@
       (not (in ?p ?t))
       (at ?p ?l)
       (has-space ?t)
-      (delivered ?p)
       (increase (total-cost) 1)
     )
   )
