@@ -26,7 +26,7 @@
            :effect
            (and
             (:new (?node - node)
-                  ((space-available ?node ?number)))
+                  (and (space-available ?node ?number)))
             (increase (total-cost) 10)
             ))
 
@@ -48,7 +48,7 @@
            )
 
   (:action execute-script-on-node
-           :parameters (?script - script ?file1 ?file2 - file ?node - node ?number ?prednumber - number)
+           :parameters (?script - script ?file1 ?file2 - file ?node - node ?number ?prednum - number)
            :precondition
            (and
             (in-ram ?script ?node)
@@ -70,15 +70,15 @@
            :parameters (?file - file ?node - node ?number ?succnum - number)
            :precondition
            (and
-            (in-ram ?f ?n)
-            (space-available ?node ?num)
+            (in-ram ?file ?node)
+            (space-available ?node ?number)
             (SUCCESSOR-NUM ?number ?succnum)
             )
            :effect
            (and
             (not (in-ram ?file ?node))
             (in-disk ?file)
-            (not (space-available ?node ?num))
+            (not (space-available ?node ?number))
             (space-available ?node ?succnum)
             (increase (total-cost) 2)
             )
