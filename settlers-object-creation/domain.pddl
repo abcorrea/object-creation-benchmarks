@@ -185,7 +185,7 @@
                            (available ore ?v N0)
                            )
                       )
-		(increase (total-cost) 1)
+		(increase (total-cost) 3)
            )
    )
 
@@ -221,7 +221,7 @@
                       )
    :effect (and (available ore ?p ?next-ore)
                 (not (available ore ?p ?curr-ore))
-		(increase (total-cost) 1)
+		(increase (total-cost) 2)
 	))
 
   ;; C.1: Refining resources.
@@ -237,7 +237,7 @@
 		(available wood ?p ?next-wood)
 		(not (available wood ?p ?curr-wood))
 		(not (available timber ?p ?curr-timber))
-		(increase (total-cost) 2)))
+		(increase (total-cost) 1)))
 
   (:action make-iron
    :parameters (?p - place ?curr-ore ?next-ore ?curr-iron ?next-iron - number)
