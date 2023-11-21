@@ -1,0 +1,3 @@
+* Differences to IPC 2002 version
+  - Removed all "maritime" features: docks, wharfs, coasts, ships, sea connection.
+  - Only possible vehicle is the train.
