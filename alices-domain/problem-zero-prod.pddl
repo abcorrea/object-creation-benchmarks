@@ -5,14 +5,11 @@
 
 (:objects a mina z az minaz x)
 
-(:init 
+(:init
        (iszero z)
        (isprod az a z)
        (isprod minaz mina z)
        (isadditiveinverse az minaz)
-       
-       (undeclared x)
-       
     )
 
 (:goal (and (equal az z)))

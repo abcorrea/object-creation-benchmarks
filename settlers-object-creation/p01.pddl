@@ -49,8 +49,8 @@
         (connected-by-rail location1 location0)
 )
 (:goal (and
-	(housing location0 N2)
-	(housing location1 N2)
+	(housing location0 N4)
+	(housing location1 N4)
 	)
 )
 
