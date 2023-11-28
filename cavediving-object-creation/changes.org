@@ -1,0 +1,24 @@
+- Name of the domain is now "cave-diving-object-creation"
+
+- Original domain had a "confidence" scheme: " Certain divers have no confidence
+  in other divers and will refuse to work if someone they have no confidence in
+  has already worked. Divers have hiring costs inversely proportional to how
+  hard they are to work with." (from the IPC 2014 page)
+
+  This has been removed -- together with the 'hiring-cost' function and the
+  'precludes' predicate symbol. In this way, we can get rid of all ADL features.
+
+- Since the only interesting action cost was the 'hiring-cost', we removed the
+  rest.
+
+- We get rid of the 'available' predicate symbol and use object creation instead.
+
+- All drivers start with a capacity of 4 (as explained in the IPC 2014 webpage)
+
+- The numbers (from 0 to 4) are set as constants.
+
+- We get rid of the 'next-tank' predicate symbol and replace it with object
+  creation. Instances now only start with a single tank.
+
+- The goal now is just to have all photos. (Before the goal mentioned specific
+  divers.) The predicate 'decompressing' was also removed.
