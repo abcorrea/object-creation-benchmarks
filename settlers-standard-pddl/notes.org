@@ -1,0 +1,9 @@
+* Differences to IPC 2002 version
+  - Removed all "maritime" features: docks, wharfs, coasts, ships, sea connection.
+  - Only possible vehicle is the train.
+  - The coal resource was removed.
+  - Action costs were set in the following way:
+    - 'labour' has an associated cost of 1
+    - 'pollution' has an associated cost of 2
+    - action 'build-house' has a cost of 2 (cost 0 before)
+    - action 'saw-wood' has a cost of 1 (cost 0 before)

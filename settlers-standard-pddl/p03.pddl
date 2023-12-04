@@ -1,0 +1,98 @@
+(define (problem settlers)
+(:domain civ)
+(:objects
+	location0 - place
+	location1 - place
+	location2 - place
+	location3 - place
+	location4 - place
+	vehicle0 - vehicle
+	vehicle1 - vehicle
+	vehicle2 - vehicle
+	vehicle3 - vehicle
+	vehicle4 - vehicle
+)
+(:init
+
+        (SUCC N0 N1)
+        (SUCC N1 N2)
+        (SUCC N2 N3)
+        (SUCC N3 N4)
+        (SUCC N4 N5)
+        (DOUBLE-SUCC N0 N2)
+        (DOUBLE-SUCC N1 N3)
+        (DOUBLE-SUCC N2 N4)
+        (DOUBLE-SUCC N3 N5)
+        (QUADRUPLE-SUCC N0 N4)
+        (QUADRUPLE-SUCC N1 N5)
+
+	(available wood location0 N0)
+	(available timber location0 N0)
+	(available ore location0 N0)
+	(available stone location0 N0)
+	(available iron location0 N0)
+	(available wood location1 N0)
+	(available timber location1 N0)
+	(available ore location1 N0)
+	(available stone location1 N0)
+	(available iron location1 N0)
+	(available wood location2 N0)
+	(available timber location2 N0)
+	(available ore location2 N0)
+	(available stone location2 N0)
+	(available iron location2 N0)
+	(available wood location3 N0)
+	(available timber location3 N0)
+	(available ore location3 N0)
+	(available stone location3 N0)
+	(available iron location3 N0)
+	(available wood location4 N0)
+	(available timber location4 N0)
+	(available ore location4 N0)
+	(available stone location4 N0)
+	(available iron location4 N0)
+
+
+	(mountain location0)
+	(woodland location0)
+	(mountain location1)
+	(woodland location1)
+	(metalliferous location1)
+	(mountain location2)
+	(woodland location2)
+	(woodland location3)
+	(metalliferous location3)
+	(mountain location4)
+	(woodland location4)
+	(metalliferous location4)
+	(connected-by-land location0 location1)
+	(connected-by-land location1 location0)
+	(connected-by-land location0 location3)
+	(connected-by-land location3 location0)
+	(connected-by-land location1 location4)
+	(connected-by-land location4 location1)
+	(connected-by-land location2 location0)
+	(connected-by-land location0 location2)
+	(connected-by-land location2 location1)
+	(connected-by-land location1 location2)
+	(connected-by-land location3 location1)
+	(connected-by-land location1 location3)
+	(connected-by-land location4 location0)
+	(connected-by-land location0 location4)
+	(connected-by-land location4 location3)
+	(connected-by-land location3 location4)
+	(potential vehicle0)
+	(potential vehicle1)
+	(potential vehicle2)
+	(potential vehicle3)
+	(potential vehicle4)
+)
+(:goal (and
+	(has-ironworks location3)
+	(connected-by-rail location2 location0)
+	(connected-by-rail location1 location4)
+	(connected-by-rail location0 location3)
+	)
+)
+
+)
