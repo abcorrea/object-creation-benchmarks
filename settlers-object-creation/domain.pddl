@@ -4,15 +4,13 @@
   (:types
    store
    resource
-   number - object
+   num - object
    place vehicle - store)
 
   (:constants
    timber wood stone iron ore - resource
    N0 N1 N2 N3 N4 N5 N6 N7 N8 N9 N10
-   N11 N12 N13 N14 N15 N16 N17 N18 N19 N20 - number)
-
-
+   N11 N12 N13 N14 N15 N16 N17 N18 N19 N20 - num)
   (:predicates
    (connected-by-land ?p1 - place ?p2 - place)
    (connected-by-rail ?p1 - place ?p2 - place)
@@ -26,16 +24,16 @@
    (has-sawmill ?p - place)
    (has-ironworks ?p - place)
    (is-train ?v - vehicle)
-   (is-at ?v - vehicle ?p - place)
+   (is-at ?v - vehicle ?p - store)
 
-   (available ?r - resource ?p - place ?n - number)
-   (space-in ?v - vehicle ?n - number)
+   (available ?r - resource ?p - store ?n - num)
+   (space-in ?v - vehicle ?n - num)
 
-   (SUCC ?n1 ?n2 - number)
-   (DOUBLE-SUCC ?n1 ?n2 - number)
-   (QUADRUPLE-SUCC ?n1 ?n2 - number)
+   (SUCC ?n1 ?n2 - num)
+   (DOUBLE-SUCC ?n1 ?n2 - num)
+   (QUADRUPLE-SUCC ?n1 ?n2 - num)
 
-   (housing ?p - place ?n - number)
+   (housing ?p - place ?n - num)
    )
   (:functions
    (total-cost)
@@ -44,7 +42,7 @@
   ;; A.1: Loading and unloading.
 
    (:action load
-    :parameters (?v - vehicle ?p - place ?r - resource ?curr-space ?next-space ?curr-place ?next-place ?curr-vehicle ?next-vehicle - number)
+    :parameters (?v - vehicle ?p - store ?r - resource ?curr-space ?next-space ?curr-place ?next-place ?curr-vehicle ?next-vehicle - num)
     :precondition (and (is-at ?v ?p)
 		       (space-in ?v ?curr-space)
 		       (available ?r ?p ?curr-place)
@@ -61,7 +59,7 @@
 		 (increase (total-cost) 1)))
 
    (:action unload
-    :parameters (?v - vehicle ?p - place ?r - resource ?curr-space ?next-space ?curr-place ?next-place ?curr-vehicle ?next-vehicle - number)
+    :parameters (?v - vehicle ?p - store ?r - resource ?curr-space ?next-space ?curr-place ?next-place ?curr-vehicle ?next-vehicle - num)
     :precondition (and (is-at ?v ?p)
 		       (space-in ?v ?curr-space)
 		       (available ?r ?p ?curr-place)
@@ -102,7 +100,7 @@
    :effect (and (increase (total-cost) 2) (has-quarry ?p)))
 
   (:action build-sawmill
-   :parameters (?p - place ?curr-timber ?next-timber - number)
+   :parameters (?p - place ?curr-timber ?next-timber - num)
    :precondition (and (available timber ?p ?curr-timber)
                       (DOUBLE-SUCC ?next-timber ?curr-timber))
    :effect (and (increase (total-cost) 2)
@@ -111,7 +109,7 @@
 		(has-sawmill ?p)))
 
   (:action build-mine
-   :parameters (?p - place ?curr-wood ?next-wood ?number)
+   :parameters (?p - place ?curr-wood ?next-wood - num)
    :precondition (and (metalliferous ?p)
                       (available wood ?p ?curr-wood)
                       (DOUBLE-SUCC ?next-wood ?curr-wood))
@@ -121,7 +119,7 @@
 		(has-mine ?p)))
 
   (:action build-ironworks
-   :parameters (?p - place ?curr-stone ?next-stone ?curr-wood ?next-wood - number)
+   :parameters (?p - place ?curr-stone ?next-stone ?curr-wood ?next-wood - num)
    :precondition (and (available stone ?p ?curr-stone)
 		      (available wood ?p ?curr-wood)
                       (DOUBLE-SUCC ?next-wood ?curr-wood)
@@ -134,7 +132,7 @@
 		(has-ironworks ?p)))
 
   (:action build-rail
-   :parameters (?p1 - place ?p2 - place ?curr-wood ?next-wood ?curr-iron ?next-iron - number)
+   :parameters (?p1 - place ?p2 - place ?curr-wood ?next-wood ?curr-iron ?next-iron - num)
    :precondition (and (connected-by-land ?p1 ?p2)
                       (available wood ?p1 ?curr-wood)
  		      (available iron ?p1 ?curr-iron)
@@ -148,7 +146,7 @@
 		(connected-by-rail ?p1 ?p2)))
 
   (:action build-house
-   :parameters (?p - place ?curr-stone ?next-stone ?curr-wood ?next-wood ?curr-housing ?next-housing - number)
+   :parameters (?p - place ?curr-stone ?next-stone ?curr-wood ?next-wood ?curr-housing ?next-housing - num)
    :precondition (and (available stone ?p ?curr-stone)
 		      (available wood ?p ?curr-wood)
                       (housing ?p ?curr-housing)
@@ -167,7 +165,7 @@
   ;; B.2: Building vehicles.
 
   (:action build-train
-   :parameters (?p - place ?curr-iron ?next-iron - number)
+   :parameters (?p - place ?curr-iron ?next-iron - num)
    :precondition (and
                   (available iron ?p ?curr-iron)
                   (DOUBLE-SUCC ?next-iron ?curr-iron)
@@ -192,7 +190,7 @@
   ;; C.1: Obtaining raw resources.
 
   (:action fell-timber
-   :parameters (?p - place ?curr-timber ?next-timber - number)
+   :parameters (?p - place ?curr-timber ?next-timber - num)
    :precondition (and (has-cabin ?p)
                       (available timber ?p ?curr-timber)
                       (SUCC ?curr-timber ?next-timber)
@@ -203,7 +201,7 @@
    )
 
   (:action break-stone
-   :parameters (?p - place ?curr-stone ?next-stone - number)
+   :parameters (?p - place ?curr-stone ?next-stone - num)
    :precondition (and (has-quarry ?p)
                       (available stone ?p ?curr-stone)
                       (SUCC ?curr-stone ?next-stone)
@@ -214,7 +212,7 @@
 		))
 
   (:action mine-ore
-   :parameters (?p - place ?curr-ore ?next-ore - number)
+   :parameters (?p - place ?curr-ore ?next-ore - num)
    :precondition (and (has-mine ?p)
                       (available ore ?p ?curr-ore)
                       (SUCC ?curr-ore ?next-ore)
@@ -227,7 +225,7 @@
   ;; C.1: Refining resources.
 
   (:action saw-wood
-   :parameters (?p - place ?curr-timber ?next-timber ?curr-wood ?next-wood - number)
+   :parameters (?p - place ?curr-timber ?next-timber ?curr-wood ?next-wood - num)
    :precondition (and (has-sawmill ?p)
 		      (available wood ?p ?curr-wood)
 		      (available timber ?p ?curr-timber)
@@ -240,7 +238,7 @@
 		(increase (total-cost) 1)))
 
   (:action make-iron
-   :parameters (?p - place ?curr-ore ?next-ore ?curr-iron ?next-iron - number)
+   :parameters (?p - place ?curr-ore ?next-ore ?curr-iron ?next-iron - num)
    :precondition (and (has-ironworks ?p)
 		      (available ore ?p ?curr-ore)
                       (available iron ?p ?curr-iron)

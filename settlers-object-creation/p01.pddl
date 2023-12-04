@@ -5,7 +5,6 @@
 	location1 - place
 )
 (:init
-	(= (total-cost) 0)
 
         (SUCC N0 N1)
         (SUCC N1 N2)
@@ -54,5 +53,4 @@
 	)
 )
 
-(:metric minimize (total-cost))
 )
