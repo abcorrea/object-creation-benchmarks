@@ -46,7 +46,7 @@
           (has-space ?t)
         )
       )
-      (increase (total-cost) 5)
+      (increase (total-cost) 2)
     )
   )
 
