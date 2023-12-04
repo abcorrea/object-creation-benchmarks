@@ -30,6 +30,7 @@
     (headquarters ?l - location)
     ;; Keep track of which trucks have been purchases
     (purchased ?t - truck)
+    (in-garage ?t - truck)
   )
 
   (:functions
@@ -40,11 +41,13 @@
     :parameters (?l - location ?t - truck)
     :precondition (and
       (headquarters ?l)
+      (in-garage ?t)
     )
     :effect (and
              (at ?t ?l)
              (has-space ?t)
              (purchased ?t)
+             (not (in-garage ?t))
              (increase (total-cost) 2)
              )
     )

@@ -6,6 +6,12 @@
         t1 t2 t3 t4 t5 t6 - truck
 	)
 	(:init
+		(in-garage t1)
+		(in-garage t2)
+		(in-garage t3)
+		(in-garage t4)
+		(in-garage t5)
+		(in-garage t6)
 		(connected c0 c1)
 		(connected c1 c0)
 		(connected c0 c12)

@@ -14,4 +14,9 @@ for (( i=1; i<=count*2; i++ )); do
     sequence+="t$i "
 done
 
-echo $sequence - truck
+#echo $sequence - truck
+
+
+for (( i=1; i<=count*2; i++ )); do
+    echo "		(in-garage t$i)"
+done

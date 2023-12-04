@@ -6,6 +6,8 @@
         t1 t2 - truck
 	)
 	(:init
+		(in-garage t1)
+		(in-garage t2)
 		(connected c0 c1)
 		(connected c1 c0)
 		(connected c1 c2)
