@@ -27,7 +27,7 @@
            (and
             (:new (?node - node)
                   (and (space-available ?node ?number)))
-            (increase (total-cost) 10)
+            (increase (total-cost) 4)
             ))
 
   (:action load-file-to-ram
@@ -43,7 +43,7 @@
             (in-ram ?file ?node)
             (not (space-available ?node ?number))
             (space-available ?node ?prednum)
-            (increase (total-cost) 0)
+            (increase (total-cost) 1)
             )
            )
 
