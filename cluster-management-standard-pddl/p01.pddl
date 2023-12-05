@@ -14,6 +14,12 @@
 
    (space-available node1 n1)
 
+   (added node1)
+   (NOT-added node2)
+   (NOT-added node3)
+   (NOT-added node4)
+   (NOT-added node5)
+
    (SUCCESSOR-NUM n1 n2)
    (SUCCESSOR-NUM n2 n3)
    (SUCCESSOR-NUM n3 n4)

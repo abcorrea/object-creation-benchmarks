@@ -15,6 +15,7 @@
    (MAX-SPACE-CAPACITY ?succ - number)
 
    (added ?node - node)
+   (NOT-added ?node - node)
    )
 
   (:functions
@@ -25,10 +26,11 @@
            :parameters (?node - node ?number - number)
            :precondition
            (and (MAX-SPACE-CAPACITY ?number)
-                (not (added ?node)))
+                (NOT-added ?node))
            :effect
                   (and (space-available ?node ?number)
                        (increase (total-cost) 4)
+                       (not (NOT-added ?node))
                        (added ?node))
             )
 
