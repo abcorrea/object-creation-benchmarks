@@ -5,7 +5,7 @@
 
 (:objects x a i mini mina zero zeroTIMESa iTIMESa miniTIMESa iTIMESaPLUSminiTIMESa)
 
-(:init 
+(:init
        (ismultidentity i)
        (isadditiveinverse i mini)
        (isadditiveinverse a mina)
@@ -18,6 +18,16 @@
        (isprod miniTIMESa mini a)
 
        (undeclared x)
+
+       (declared a)
+       (declared i)
+       (declared mini)
+       (declared mina)
+       (declared zero)
+       (declared zeroTIMESa)
+       (declared iTIMESa)
+       (declared miniTIMESa)
+       (declared iTIMESaPLUSminiTIMESa)
 
     )
 

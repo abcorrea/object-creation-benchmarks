@@ -5,7 +5,7 @@
 
 (:objects a mina i mini zero miniTIMESa)
 
-(:init 
+(:init
        (isadditiveinverse a mina)
        (isadditiveinverse i mini)
 
@@ -15,8 +15,9 @@
 
        (iszero zero)
        (allowzeroprod)
-       
+
        (allownegprod)
+
     )
 
 (:goal (and (equal miniTIMESa mina)))

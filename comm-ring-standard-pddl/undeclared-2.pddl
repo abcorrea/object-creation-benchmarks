@@ -5,7 +5,7 @@
 
 (:objects x a b zero mina minb ab minab aTIMESminb abPLUSminab minbPLUSb aTIMESminbPLUSb)
 
-(:init 
+(:init
        (isadditiveinverse a mina)
        (isadditiveinverse b minb)
        (isadditiveinverse ab minab)
@@ -22,6 +22,19 @@
        (allowzeroprod)
 
        (undeclared x)
+
+       (declared a)
+       (declared b)
+       (declared zero)
+       (declared mina)
+       (declared minb)
+       (declared ab)
+       (declared minab)
+       (declared aTIMESminb)
+       (declared abPLUSminab)
+       (declared minbPLUSb)
+       (declared aTIMESminbPLUSb)
+
 
     )
 

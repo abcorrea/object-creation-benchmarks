@@ -1,6 +1,5 @@
 (define (domain COMMRING)
   (:requirements :strips :adl)
-
   (:predicates (equal ?a ?b)
                (issum ?a ?b ?c)
                (iszero ?z)
@@ -9,6 +8,7 @@
                (assumenonzero ?a)
                (assumezero ?a)
 	       (undeclared ?a)
+               (declared ?a)
 	       (ismultidentity ?i)
 	       (allowzeroprod)
 	       (allownegprod)
@@ -23,10 +23,11 @@
     	     :parameters (?a ?b ?c)
     	     :precondition (and
 			    (undeclared ?a)
-			    (not (undeclared ?b))
-			    (not (undeclared ?c)))
+			    (declared ?b)
+			    (declared ?c))
     	     :effect (and
 		      (issum ?a ?b ?c)
+                      (declared ?a)
 		      (not (undeclared ?a))))
 
 	; and another operation called multiplication:
@@ -35,10 +36,11 @@
     	     :parameters (?a ?b ?c)
     	     :precondition (and
 			    (undeclared ?a)
-			    (not (undeclared ?b))
-			    (not (undeclared ?c)))
+			    (declared ?b)
+			    (declared ?c))
     	     :effect (and
 		      (isprod ?a ?b ?c)
+                      (declared ?a)
 		      (not (undeclared ?a))))
 
 	; satisfying the following axioms:
@@ -71,13 +73,15 @@
     	     :precondition (and
 			 (iszero ?z)
 			 (or
-			 	(and (undeclared ?ADDINVa) (not (undeclared ?a)))
+			 	(and (undeclared ?ADDINVa)
+                                     (declared ?a))
 			 	(isadditiveinverse ?a ?ADDINVa)
 				(issum ?z ?a ?ADDINVa)))
     	     :effect (and
 			 	(issum ?z ?a ?ADDINVa)
 				(isadditiveinverse ?a ?ADDINVa)
 				(isadditiveinverse ?ADDINVa ?a)
+                                (declared ?ADDINVa)
 				(not (undeclared ?ADDINVa))))
 
 	; (iv) Addition is commutative, i.e.
